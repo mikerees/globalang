@@ -16,11 +16,9 @@ class CreateUserTranslationsTable extends Migration
         Schema::create('UserTranslations', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('translation_id');
-            $table->foreign('translation_id')->references('id')->on('Translations')->onDelete('cascade');
+            $table->integer('translation_id')->unsigned();
             $table->time('timeSpent');
-            $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('Users')->onDelte('cascade');
+            $table->integer('user_id')->unsigned();
             $table->dateTime('translationComplete');
 
         });

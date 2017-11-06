@@ -16,11 +16,9 @@ class CreateTranslationFieldsTable extends Migration
         Schema::create('TranslationFields', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('translation_id');
+            $table->integer('translation_id')->unsigned();
             $table->string('name');
-            $table->integer('type_id');
-            $table->foreign('translation_id')->references('id')->on('Translations')->onDelete('cascade');
-            $table->foreign('type_id')->references('id')->on('TranslationFieldTypes')->onDelete('cascade');
+            $table->integer('type_id')->unsigned();
         });
     }
 

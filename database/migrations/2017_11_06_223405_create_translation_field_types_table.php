@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTranslationsTable extends Migration
+class CreateTranslationFieldTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('translations', function (Blueprint $table) {
+        Schema::create('TranslationFieldTypes', function (Blueprint $table) {
             $table->increments('id');
+            $table->timestamps();
             $table->string('name');
+            $table->enum('inputType', ['text', 'number', 'password', 'email', 'longtext']);
+            $table->integer('maxLength');
+            $table->boolean('required');
         });
     }
 
@@ -26,6 +30,6 @@ class CreateTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('translations');
+        Schema::dropIfExists('TranslationFieldTypes');
     }
 }
